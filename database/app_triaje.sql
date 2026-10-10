@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de dades: `app_triaje`
 --
-
+CREATE DATABASE IF NOT EXISTS `app_triaje` CHARACTER SET utf8mb4;
+USE `app_triaje`;
 -- --------------------------------------------------------
 
 --
