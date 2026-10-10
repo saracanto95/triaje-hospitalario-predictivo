@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TriApp</title>
+
+    <link rel="stylesheet" href="styles_triapp_v2.css">
+
+    <!-- Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    <div class="contenedor">
+
+        <!-- BIENVENIDA -->
+        <section id="screen-bienvenida" class="pantalla activa">
+            <div class="app-header home-header">
+                <div class="brand">
+                    <div class="brand-icon">❤</div>
+                    <span>TriApp</span>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <h2>Bienvenido a <span>TriApp</span></h2>
+                <p>Evaluación rápida para orientar tu atención médica.</p>
+            </div>
+
+            <div class="aviso-card">
+                <div class="aviso-titulo">
+                    <div class="aviso-icon">⚠</div>
+                    <span>Aviso importante</span>
+                </div>
+                <p>
+                    TriApp no sustituye la valoración médica profesional.
+                    Si presenta síntomas graves, llame al 112 o acuda al servicio
+                    de urgencias más cercano.
+                </p>
+            </div>
+
+            <div class="grupo-botones">
+                <button id="btn-ir-aviso" class="btn-principal" type="button" onclick="cambiarSeccion('screen-triaje1')">
+                    Iniciar triaje <span>›</span>
+                </button>
+            </div>
+
+            <p class="nota-footer">🛡️ Tus datos se usan solo para realizar la evaluación.</p>
+        </section>
+
+        <!-- TRIAJE 1 -->
+        <section id="screen-triaje1" class="pantalla">
+            <div class="app-header">
+                <button class="icon-btn" type="button" onclick="cambiarSeccion('screen-bienvenida')">‹</button>
+                <h1>TriApp</h1>
+                <div class="header-spacer"></div>
+            </div>
+
+            <div class="screen-card">
+                <h2>Datos del paciente</h2>
+                <p class="subtexto">Introduce los datos básicos para realizar la evaluación.</p>
+
+                <form id="form-triaje1" class="form-grid">
+                    <div class="campo-card campo-fila">
+                        <div class="campo-info">
+                            <div class="campo-icon">⚥</div>
+                            <label class="campo-label">Sexo</label>
+                        </div>
+                        <div class="segmented">
+                            <input type="radio" id="sex-hombre" name="sex" value="0" required>
+                            <label for="sex-hombre">Hombre</label>
+                            <input type="radio" id="sex-mujer" name="sex" value="1">
+                            <label for="sex-mujer">Mujer</label>
+                        </div>
+                    </div>
+
+                    <div class="campo-card campo-fila">
+                        <div class="campo-info">
+                            <div class="campo-icon">📅</div>
+                            <label class="campo-label" for="age">Edad <span class="campo-ayuda">años</span></label>
+                        </div>
+                        <input type="number" id="age" min="0" max="120" required class="input-mini" placeholder="45">
+                    </div>
+
+                    <div class="campo-card radio-card">
+                        <div class="campo-info">
+                            <div class="campo-icon">🧠</div>
+                            <label class="campo-label">Nivel de conciencia</label>
+                        </div>
+                        <div class="radio-list">
+                            <label><input type="radio" name="mental" value="1" required> Alerta y consciente</label>
+                            <label><input type="radio" name="mental" value="2"> Responde al hablarle</label>
+                            <label><input type="radio" name="mental" value="3"> Responde solo ante dolor</label>
+                            <label><input type="radio" name="mental" value="4"> No responde</label>
+                        </div>
+                    </div>
+
+                    <div class="campo-card campo-fila">
+                        <div class="campo-info">
+                            <div class="campo-icon">🩹</div>
+                            <label class="campo-label">Lesión o traumatismo</label>
+                        </div>
+                        <div class="segmented">
+                            <input type="radio" id="injury-si" name="injury" value="1">
+                            <label for="injury-si">Sí</label>
+                            <input type="radio" id="injury-no" name="injury" value="0" required>
+                            <label for="injury-no">No</label>
+                        </div>
+                    </div>
+
+                    <div class="campo-card campo-fila">
+                        <div class="campo-info">
+                            <div class="campo-icon">❤</div>
+                            <label class="campo-label">Dolor</label>
+                        </div>
+                        <div class="segmented">
+                            <input type="radio" id="pain-si" name="pain" value="1">
+                            <label for="pain-si">Sí</label>
+                            <input type="radio" id="pain-no" name="pain" value="0" required>
+                            <label for="pain-no">No</label>
+                        </div>
+                    </div>
+
+                    <div class="vitales-grid">
+                        <div class="campo-card campo-fila">
+                            <div class="campo-info">
+                                <div class="campo-icon">🩸</div>
+                                <label class="campo-label" for="sbp">Presión sistólica <span class="campo-ayuda">SBP · mmHg</span></label>
+                            </div>
+                            <input type="number" id="sbp" required class="input-mini" placeholder="120">
+                        </div>
+
+                        <div class="campo-card campo-fila">
+                            <div class="campo-info">
+                                <div class="campo-icon">🩸</div>
+                                <label class="campo-label" for="dbp">Presión diastólica <span class="campo-ayuda">DBP · mmHg</span></label>
+                            </div>
+                            <input type="number" id="dbp" required class="input-mini" placeholder="80">
+                        </div>
+
+                        <div class="campo-card campo-fila">
+                            <div class="campo-info">
+                                <div class="campo-icon">〽</div>
+                                <label class="campo-label" for="hr">Frecuencia cardíaca <span class="campo-ayuda">HR · lpm</span></label>
+                            </div>
+                            <input type="number" id="hr" required class="input-mini" placeholder="75">
+                        </div>
+
+                        <div class="campo-card campo-fila">
+                            <div class="campo-info">
+                                <div class="campo-icon">🫁</div>
+                                <label class="campo-label" for="rr">Frecuencia respiratoria <span class="campo-ayuda">RR · rpm</span></label>
+                            </div>
+                            <input type="number" id="rr" required class="input-mini" placeholder="18">
+                        </div>
+
+                        <div class="campo-card campo-fila">
+                            <div class="campo-info">
+                                <div class="campo-icon">🌡</div>
+                                <label class="campo-label" for="bt">Temperatura <span class="campo-ayuda">BT · ºC</span></label>
+                            </div>
+                            <input type="number" step="0.1" id="bt" required class="input-mini" placeholder="36.7">
+                        </div>
+
+                        <div class="campo-card campo-fila">
+                            <div class="campo-info">
+                                <div class="campo-icon">O₂</div>
+                                <label class="campo-label" for="saturation">Saturación de O₂ <span class="campo-ayuda">%</span></label>
+                            </div>
+                            <input type="number" id="saturation" required class="input-mini" placeholder="98">
+                        </div>
+                    </div>
+
+                    <div class="grupo-botones">
+                        <button class="btn-principal" type="button" onclick="continuarTriaje1()">Continuar</button>
+                        <button id="btn-volver-bienvenida" class="btn-secundario" type="button" onclick="cambiarSeccion('screen-bienvenida')">Volver</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- TRIAJE 2 -->
+        <section id="screen-triaje2" class="pantalla">
+            <div class="app-header">
+                <button class="icon-btn" type="button" onclick="cambiarSeccion('screen-triaje1')">‹</button>
+                <h1>TriApp</h1>
+                <div class="header-spacer"></div>
+            </div>
+
+            <div class="screen-card">
+                <h2>Síntomas</h2>
+                <p class="subtexto">Selecciona los síntomas principales que presenta el paciente.</p>
+
+                <form id="form-triaje2">
+                    <div class="checks-list">
+                        <label class="check-card">
+                            <span><span class="check-icon">❤</span> Dolor en el pecho o palpitaciones</span>
+                            <input type="checkbox" name="symptoms" value="Cardiovascular_Agudo">
+                        </label>
+
+                        <label class="check-card">
+                            <span><span class="check-icon">🫁</span> Dificultad respiratoria</span>
+                            <input type="checkbox" name="symptoms" value="Dificultad_Respiratoria">
+                        </label>
+
+                        <label class="check-card">
+                            <span><span class="check-icon">🧠</span> Debilidad, hormigueo o dificultad para hablar</span>
+                            <input type="checkbox" name="symptoms" value="Neurologico_Ictus">
+                        </label>
+
+                        <label class="check-card">
+                            <span><span class="check-icon">⚡</span> Confusión, desmayo, convulsiones o somnolencia</span>
+                            <input type="checkbox" name="symptoms" value="Alteracion_Conciencia">
+                        </label>
+
+                        <label class="check-card">
+                            <span><span class="check-icon">🤢</span> Dolor abdominal intenso o vómitos</span>
+                            <input type="checkbox" name="symptoms" value="Abdominal_Grave">
+                        </label>
+
+                        <label class="check-card">
+                            <span><span class="check-icon">💫</span> Cefalea intensa, mareo o vértigo</span>
+                            <input type="checkbox" name="symptoms" value="Cefalea_Mareo">
+                        </label>
+
+                        <label class="check-card">
+                            <span><span class="check-icon">🩹</span> Trauma, herida, fractura o quemadura</span>
+                            <input type="checkbox" name="symptoms" value="Trauma_Accidente">
+                        </label>
+
+                        <label class="check-card">
+                            <span><span class="check-icon">🌡</span> Fiebre o escalofríos</span>
+                            <input type="checkbox" name="symptoms" value="Infeccioso_Fiebre">
+                        </label>
+
+                        <label class="check-card">
+                            <span><span class="check-icon">＋</span> Otros síntomas</span>
+                            <input type="checkbox" name="symptoms" value="Otros_Sintomas">
+                        </label>
+                    </div>
+
+                    <div class="grupo-botones">
+                        <button class="btn-principal" type="button" onclick="mostrarResumen()">Ver resumen</button>
+                        <button id="btn-volver-triaje1" class="btn-secundario" type="button" onclick="cambiarSeccion('screen-triaje1')">Volver</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- RESUMEN -->
+        <section id="screen-resumen" class="pantalla">
+            <div class="app-header">
+                <button class="icon-btn" type="button" onclick="cambiarSeccion('screen-triaje2')">‹</button>
+                <h1>TriApp</h1>
+                <div class="header-spacer"></div>
+            </div>
+
+            <div class="resumen-card">
+                <h2>Resumen del triaje</h2>
+                <p class="subtexto">Revisa los datos antes de calcular el resultado.</p>
+                <div id="resumen-contenido"></div>
+            </div>
+
+            <div class="grupo-botones">
+                <button id="btn-calcular" class="btn-principal" type="button" onclick="evaluarTriaje()">Evaluar triaje</button>
+                <button id="btn-volver-triaje2" class="btn-secundario" type="button" onclick="cambiarSeccion('screen-triaje2')">Volver</button>
+            </div>
+        </section>
+
+        <!-- RESULTADO -->
+        <section id="screen-resultado" class="pantalla">
+            <div class="app-header">
+                <button class="icon-btn" type="button" onclick="cambiarSeccion('screen-resumen')">‹</button>
+                <h1>TriApp</h1>
+                <div class="header-spacer"></div>
+            </div>
+
+            <div class="screen-card">
+                <h2>Resultado</h2>
+                <div id="resultado-contenido"></div>
+
+                <div class="grupo-botones">
+                    <button id="btn-como-llegar-res" class="btn-principal" type="button" onclick="abrirRutaGoogleMapsRes()">📍 Cómo llegar</button>
+                    <button id="btn-ver-otros-res" class="btn-secundario" type="button" onclick="verHospitales()">Ver otros hospitales</button>
+                    <button id="btn-volver-resumen" class="btn-secundario" type="button" onclick="cambiarSeccion('screen-resumen')">Volver</button>
+                    <button id="btn-volver-menu" class="btn-texto" type="button" onclick="salir()">Salir</button>
+                </div>
+
+                <p class="mini-nota">Esta recomendación es orientativa y no sustituye la valoración del personal sanitario.</p>
+            </div>
+        </section>
+
+        <!-- HOSPITALES MAPA -->
+        <section id="screen-mapa" class="pantalla">
+            <div class="app-header">
+                <button class="icon-btn" type="button" onclick="cambiarSeccion('screen-resultado')">‹</button>
+                <h1>TriApp</h1>
+                <div class="header-spacer"></div>
+            </div>
+
+            <div class="screen-card">
+                <h2>Hospitales disponibles</h2>
+                <p class="subtexto">Selecciona un hospital para ver más información.</p>
+
+                <div id="mapa" style="height: 350px; display: none; margin-bottom: 15px; border-radius: 16px;"></div>
+
+                <div id="detalleHospital" class="hospital-card" style="display: none;"></div>
+
+                <div id="bloqueGrafSat" style="display:none; margin-top: 20px;">
+                    <h3 style="margin-bottom: 10px;">Evolución estimada de la ocupación</h3>
+                    <canvas id="graficoSat"></canvas>
+                </div>
+
+                <div class="grupo-botones">
+                    <button id="btn-ver-detalle" class="btn-secundario" type="button" onclick="verDetalleHospital()" style="display: none;">Ver detalle hospital</button>
+                    <button id="btn-como-llegar" class="btn-principal" type="button" onclick="abrirRutaGoogleMaps()" style="display: none;">📍 Cómo llegar</button>
+                    <button id="btn-volver-resultado-desde-mapa" class="btn-secundario" type="button" onclick="cambiarSeccion('screen-resultado')">Volver</button>
+                    <button id="btn-volver-menu-desde-mapa" class="btn-texto" type="button" onclick="salir()">Salir</button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+
+    <script src="rest.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

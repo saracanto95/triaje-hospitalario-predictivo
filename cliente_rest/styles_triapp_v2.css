@@ -1,0 +1,1262 @@
+:root{
+    --azul:#075fd7;
+    --azul-2:#064fb8;
+    --azul-oscuro:#073a8b;
+    --azul-suave:#eef6ff;
+    --fondo:#edf3f8;
+    --pantalla:#f8fbff;
+    --tarjeta:#ffffff;
+    --texto:#142033;
+    --muted:#607086;
+    --borde:#dce6f1;
+    --rojo:#dc2626;
+    --rojo-bg:#fff1f1;
+    --naranja:#f59e0b;
+    --naranja-bg:#fff8e6;
+    --verde:#16a34a;
+    --verde-bg:#ecfdf3;
+    --sombra:0 10px 26px rgba(15, 23, 42, 0.075);
+    --sombra-suave:0 5px 14px rgba(15, 23, 42, 0.045);
+}
+
+*{ box-sizing:border-box; }
+
+html, body{ min-height:100%; }
+
+body{
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:var(--fondo);
+    color:var(--texto);
+}
+
+.contenedor{
+    width:100%;
+    max-width:430px;
+    min-height:100vh;
+    margin:0 auto;
+    background:var(--pantalla);
+    overflow-x:hidden;
+    box-shadow:0 0 34px rgba(15, 23, 42, 0.10);
+}
+
+.pantalla{
+    display:none;
+    min-height:100vh;
+    padding:0 18px 28px;
+}
+
+.pantalla.activa{ display:block; }
+
+/* CABECERA */
+.app-header{
+    position:relative;
+    z-index:1;
+    height:64px;
+    margin:0 -18px 18px;
+    padding:0 18px;
+    background:linear-gradient(180deg, #0869df 0%, #0757c7 100%);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom-left-radius:22px;
+    border-bottom-right-radius:22px;
+    box-shadow:0 9px 20px rgba(7, 95, 215, 0.23);
+}
+
+.app-header h1{
+    margin:0;
+    font-size:20px;
+    line-height:1;
+    font-weight:800;
+    letter-spacing:.2px;
+}
+
+.header-spacer{
+    width:36px;
+    height:36px;
+}
+
+.icon-btn{
+    width:36px;
+    height:36px;
+    border:0;
+    border-radius:999px;
+    background:rgba(255,255,255,.13);
+    color:#fff;
+    font-size:24px;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 0 3px;
+}
+
+.icon-btn:hover{ background:rgba(255,255,255,.23); }
+
+/* BIENVENIDA */
+.home-header{
+    height:205px;
+    align-items:flex-start;
+    justify-content:center;
+    padding-top:38px;
+    margin-bottom:-50px;
+    border-bottom-left-radius:36px;
+    border-bottom-right-radius:36px;
+    overflow:hidden;
+}
+
+.home-header::before{
+    content:"";
+    position:absolute;
+    inset:72px 0 0;
+    background:
+        radial-gradient(circle at 18% 22%, rgba(255,255,255,.20) 0 16%, transparent 17%),
+        radial-gradient(circle at 88% 20%, rgba(255,255,255,.14) 0 19%, transparent 20%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.0));
+    opacity:.9;
+}
+
+.home-header::after{
+    content:"";
+    position:absolute;
+    left:-20px;
+    right:-20px;
+    bottom:-34px;
+    height:92px;
+    background:rgba(255,255,255,.22);
+    border-radius:0 0 50% 50%;
+    transform:rotate(-2deg);
+}
+
+.brand{
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:13px;
+    font-size:34px;
+    font-weight:900;
+    letter-spacing:-.5px;
+}
+
+.brand-icon{
+    width:46px;
+    height:46px;
+    border-radius:16px;
+    background:#fff;
+    color:var(--azul);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    box-shadow:0 8px 18px rgba(0,0,0,.10);
+}
+
+.hero-card,
+.screen-card,
+.resumen-card,
+.aviso-card,
+.resultado-card,
+.hospital-card{
+    position:relative;
+    background:var(--tarjeta);
+    border:1px solid var(--borde);
+    border-radius:20px;
+    padding:18px;
+    margin-bottom:16px;
+    box-shadow:var(--sombra);
+}
+
+.hero-card{
+    z-index:3;
+    padding:22px 20px 20px;
+    margin-top:0;
+}
+
+.hero-card h2,
+.screen-card h2,
+.resumen-card h2{
+    margin:0 0 9px;
+    text-align:left;
+    font-size:23px;
+    line-height:1.15;
+    font-weight:900;
+    letter-spacing:-.2px;
+}
+
+.hero-card h2 span,
+.titulo-azul{ color:var(--azul); }
+
+.hero-card p,
+.screen-card p,
+.aviso-card p,
+.resumen-card p{
+    margin:0;
+    line-height:1.48;
+}
+
+.subtexto{
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:15px !important;
+}
+
+.aviso-card{
+    background:#fff5f5;
+    border-color:#ffcaca;
+    box-shadow:none;
+    padding:17px;
+}
+
+.aviso-titulo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--rojo);
+    font-weight:900;
+    margin-bottom:10px;
+    font-size:17px;
+}
+
+.aviso-icon{
+    width:34px;
+    height:34px;
+    border-radius:11px;
+    background:#fee2e2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.nota-footer{
+    color:var(--muted);
+    text-align:center;
+    font-size:13px;
+    line-height:1.35;
+    margin:16px 0 0;
+}
+
+/* BOTONES */
+.grupo-botones{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:14px;
+}
+
+.btn-principal,
+.btn-secundario{
+    width:100%;
+    min-height:50px;
+    border-radius:15px;
+    font-size:16px;
+    font-weight:900;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    text-decoration:none;
+}
+
+.btn-principal{
+    border:0;
+    background:linear-gradient(180deg, #0b6de3 0%, #0755bf 100%);
+    color:#fff;
+    box-shadow:0 9px 18px rgba(11, 94, 215, .24);
+}
+
+.btn-principal:hover{ background:linear-gradient(180deg, #095cc7, #064aa5); }
+
+.btn-secundario{
+    background:white;
+    color:var(--azul);
+    border:1.5px solid rgba(7,95,215,.55);
+    box-shadow:none;
+}
+
+.btn-secundario:hover{ background:var(--azul-suave); }
+
+.btn-texto{
+    width:100%;
+    background:transparent;
+    border:0;
+    color:var(--azul);
+    font-weight:900;
+    padding:10px;
+    cursor:pointer;
+}
+
+/* FORMULARIO */
+.form-grid{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.campo-card{
+    background:#fff;
+    border:1px solid var(--borde);
+    border-radius:16px;
+    padding:11px;
+    box-shadow:var(--sombra-suave);
+}
+
+.campo-fila{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.campo-info{
+    min-width:0;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.campo-icon,
+.check-icon{
+    width:32px;
+    min-width:32px;
+    height:32px;
+    border-radius:11px;
+    background:var(--azul-suave);
+    color:var(--azul);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+    font-weight:900;
+}
+
+.campo-label{
+    display:block;
+    margin:0;
+    color:var(--texto);
+    font-size:13.5px;
+    font-weight:900;
+    line-height:1.2;
+}
+
+.campo-ayuda{
+    display:block;
+    margin-top:2px;
+    color:var(--muted);
+    font-size:11.5px;
+    font-weight:700;
+}
+
+.input-mini{
+    width:82px;
+    height:38px;
+    border:1px solid #ced9e6;
+    border-radius:12px;
+    padding:8px 10px;
+    background:#fbfdff;
+    color:var(--texto);
+    text-align:center;
+    font-size:15px;
+    font-weight:900;
+}
+
+.input-mini:focus{
+    outline:2px solid rgba(7,95,215,.18);
+    border-color:var(--azul);
+}
+
+.segmented{
+    position:relative;
+    display:flex;
+    gap:5px;
+    min-width:132px;
+    padding:3px;
+    border:1px solid #d7e0ea;
+    border-radius:13px;
+    background:#eef3f8;
+}
+
+.segmented input{
+    position:absolute;
+    opacity:0;
+    width:1px;
+    height:1px;
+}
+
+.segmented label{
+    flex:1;
+    min-width:52px;
+    margin:0;
+    padding:8px 10px;
+    border-radius:10px;
+    text-align:center;
+    cursor:pointer;
+    color:#334155;
+    font-size:13px;
+    font-weight:900;
+}
+
+.segmented input:checked + label{
+    background:var(--azul);
+    color:#fff;
+    box-shadow:0 4px 10px rgba(7,95,215,.22);
+}
+
+.radio-card{ padding:12px; }
+.radio-card .campo-info{ margin-bottom:9px; }
+
+.radio-list{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    padding-left:42px;
+}
+
+.radio-list label{
+    display:flex;
+    flex-direction:row-reverse;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin:0;
+    padding:6px 0;
+    color:#334155;
+    font-size:13.5px;
+    font-weight:750;
+    cursor:pointer;
+}
+
+.radio-list input[type="radio"]{
+    width:18px;
+    height:18px;
+    margin:0;
+    accent-color:var(--azul);
+}
+
+.vitales-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+}
+
+/* SÍNTOMAS */
+.checks-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.check-card{
+    background:white;
+    border:1px solid var(--borde);
+    border-radius:16px;
+    padding:12px 13px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    box-shadow:var(--sombra-suave);
+    cursor:pointer;
+}
+
+.check-card > span{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:0;
+    color:#263142;
+    font-size:13.5px;
+    font-weight:850;
+    line-height:1.25;
+}
+
+.check-card input{
+    width:20px;
+    height:20px;
+    margin:0;
+    accent-color:var(--azul);
+}
+
+/* RESUMEN */
+.resumen-aviso{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    background:var(--azul-suave);
+    border:1px solid #cfe1ff;
+    border-radius:16px;
+    padding:13px 14px;
+    margin-bottom:14px;
+}
+
+.resumen-aviso strong{ color:var(--azul-oscuro); font-size:15px; }
+.resumen-aviso span{ color:#466178; font-size:13px; line-height:1.35; }
+
+.resumen-seccion{
+    background:#fff;
+    border:1px solid var(--borde);
+    border-radius:17px;
+    padding:14px;
+    margin-bottom:13px;
+    box-shadow:var(--sombra-suave);
+}
+
+.resumen-seccion h3{
+    margin:0 0 10px;
+    color:#0b4fb3;
+    font-size:16px;
+}
+
+.resumen-lista{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.resumen-item{
+    display:flex;
+    justify-content:space-between;
+    gap:14px;
+    padding:8px 0;
+    border-bottom:1px solid #edf2f7;
+    font-size:14px;
+}
+
+.resumen-item:last-child{ border-bottom:0; }
+.resumen-item span{ color:#64748b; }
+.resumen-item strong{ color:#152033; text-align:right; }
+
+.resumen-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:10px;
+}
+
+.vital-card{
+    border:1px solid #e4ebf3;
+    border-radius:14px;
+    padding:11px 10px;
+    background:#fbfdff;
+}
+
+.vital-card span{
+    display:block;
+    color:#64748b;
+    font-size:12px;
+    font-weight:800;
+}
+
+.vital-card strong{
+    display:block;
+    margin-top:4px;
+    color:#0f172a;
+    font-size:20px;
+}
+
+.vital-card small{ color:#64748b; }
+
+.resumen-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.resumen-chip{
+    display:inline-flex;
+    align-items:center;
+    border-radius:999px;
+    padding:8px 10px;
+    background:var(--azul-suave);
+    color:#0b4fb3;
+    font-size:13px;
+    font-weight:850;
+}
+
+.resumen-chip-vacio{
+    background:#f1f5f9;
+    color:#64748b;
+}
+
+/* RESULTADO */
+.resultado-alerta{
+    border-radius:18px;
+    padding:16px;
+    margin-bottom:14px;
+    border:1px solid;
+    border-left-width:6px;
+    box-shadow:var(--sombra-suave);
+}
+
+.resultado-alerta h3{
+    margin:0 0 7px;
+    font-size:23px;
+    font-weight:900;
+}
+
+.resultado-alerta p{
+    margin:0;
+    line-height:1.42;
+    color:#334155;
+    font-size:14.5px;
+    font-weight:650;
+}
+
+.prioridad-critica{
+    background:var(--rojo-bg);
+    border-color:#fca5a5;
+    border-left-color:var(--rojo);
+}
+.prioridad-critica h3{ color:var(--rojo); }
+
+.prioridad-urgente{
+    background:var(--naranja-bg);
+    border-color:#fde68a;
+    border-left-color:var(--naranja);
+}
+.prioridad-urgente h3{ color:#b45309; }
+
+.prioridad-baja{
+    background:var(--verde-bg);
+    border-color:#bbf7d0;
+    border-left-color:var(--verde);
+}
+.prioridad-baja h3{ color:#15803d; }
+
+.prob-card,
+.hospital-card{
+    background:white;
+    border:1px solid var(--borde);
+    border-radius:18px;
+    padding:16px;
+    margin-bottom:14px;
+    box-shadow:var(--sombra-suave);
+}
+
+.prob-card h3,
+.hospital-card h3{
+    margin:0 0 14px;
+    color:#0b4fb3;
+    font-size:18px;
+    font-weight:900;
+}
+
+.prob-row{ margin-bottom:11px; }
+.prob-row:last-child{ margin-bottom:0; }
+
+.prob-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:5px;
+    color:#334155;
+    font-size:13px;
+}
+
+.prob-track{
+    height:9px;
+    background:#e6edf5;
+    border-radius:999px;
+    overflow:hidden;
+}
+
+.prob-fill{
+    height:100%;
+    border-radius:999px;
+}
+
+.prob-critico{ background:var(--rojo); color:var(--rojo); }
+.prob-urgente{ background:var(--naranja); color:var(--naranja); }
+.prob-baja{ background:var(--verde); color:var(--verde); }
+
+.hospital-info{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.hospital-linea{
+    display:grid;
+    grid-template-columns:118px 1fr;
+    gap:10px;
+    font-size:14px;
+    line-height:1.35;
+}
+
+.hospital-linea strong{ color:#64748b; }
+.hospital-dato{ color:#152033; font-weight:800; }
+
+.mini-nota{
+    margin:4px 0 0;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.35;
+    text-align:center;
+}
+
+/* MAPA */
+#mapa{
+    border:1px solid var(--borde);
+    box-shadow:var(--sombra-suave);
+}
+
+#detalleHospital{ box-shadow:var(--sombra-suave); }
+#detalleHospital p{ margin:8px 0; line-height:1.35; }
+
+#bloqueGrafSat{
+    background:white;
+    border:1px solid var(--borde);
+    border-radius:18px;
+    padding:16px;
+    box-shadow:var(--sombra-suave);
+}
+
+@media (min-width:700px){
+    body{ padding:24px 0; }
+    .contenedor{
+        border-radius:32px;
+        overflow:hidden;
+        min-height:860px;
+    }
+}
+
+@media (max-width:380px){
+    .pantalla{ padding-left:14px; padding-right:14px; }
+    .app-header{ margin-left:-14px; margin-right:-14px; }
+    .hospital-linea{ grid-template-columns:105px 1fr; }
+    .segmented{ min-width:118px; }
+    .segmented label{ min-width:48px; padding-left:7px; padding-right:7px; }
+}
+/* ==========================================================
+   PATCH TRIAPP - VERSIÓN MÁS FINA / MENOS GORDA
+   Pégalo al FINAL de styles.css para sobrescribir la v2.
+   ========================================================== */
+
+:root{
+    --azul:#075ccf;
+    --azul-2:#064fb5;
+    --fondo:#f3f7fb;
+    --pantalla:#fbfdff;
+    --borde:#e3ebf4;
+    --sombra:0 5px 14px rgba(15, 23, 42, 0.055);
+    --sombra-suave:0 2px 8px rgba(15, 23, 42, 0.035);
+}
+
+body{
+    background:var(--fondo);
+    font-size:15px;
+}
+
+.contenedor{
+    max-width:390px;
+    background:var(--pantalla);
+    box-shadow:0 0 18px rgba(15, 23, 42, 0.07);
+}
+
+.pantalla{
+    padding:0 14px 20px;
+}
+
+/* Cabecera más fina */
+.app-header{
+    height:54px;
+    margin:0 -14px 14px;
+    padding:0 14px;
+    border-bottom-left-radius:16px;
+    border-bottom-right-radius:16px;
+    box-shadow:0 5px 13px rgba(7, 95, 215, 0.16);
+}
+
+.app-header h1{
+    font-size:18px;
+    font-weight:800;
+}
+
+.icon-btn,
+.header-spacer{
+    width:31px;
+    height:31px;
+}
+
+.icon-btn{
+    font-size:20px;
+    background:transparent;
+}
+
+/* Inicio: azul menos enorme */
+.home-header{
+    height:155px;
+    padding-top:28px;
+    margin-bottom:-32px;
+    border-bottom-left-radius:28px;
+    border-bottom-right-radius:28px;
+}
+
+.home-header::after{
+    bottom:-45px;
+    height:86px;
+}
+
+.brand{
+    gap:10px;
+    font-size:29px;
+    letter-spacing:-.4px;
+}
+
+.brand-icon{
+    width:39px;
+    height:39px;
+    border-radius:13px;
+    font-size:20px;
+    box-shadow:0 5px 12px rgba(0,0,0,.08);
+}
+
+/* Tarjetas más ligeras */
+.hero-card,
+.screen-card,
+.resumen-card,
+.aviso-card,
+.resultado-card,
+.hospital-card,
+.prob-card,
+.resumen-seccion,
+.campo-card,
+.check-card{
+    border-radius:15px;
+    box-shadow:var(--sombra-suave);
+}
+
+.hero-card,
+.screen-card,
+.resumen-card,
+.aviso-card{
+    padding:15px;
+    margin-bottom:13px;
+}
+
+.hero-card{
+    padding-top:17px;
+}
+
+.hero-card h2,
+.screen-card h2,
+.resumen-card h2{
+    font-size:20px;
+    margin-bottom:7px;
+    letter-spacing:-.15px;
+}
+
+.hero-card p,
+.screen-card p,
+.aviso-card p,
+.resumen-card p{
+    font-size:14.5px;
+    line-height:1.42;
+}
+
+.subtexto{
+    font-size:13px;
+    margin-bottom:12px !important;
+}
+
+.aviso-card{
+    padding:14px;
+}
+
+.aviso-titulo{
+    font-size:15.5px;
+    margin-bottom:8px;
+}
+
+.aviso-icon{
+    width:29px;
+    height:29px;
+    border-radius:9px;
+}
+
+.nota-footer{
+    font-size:12.5px;
+    margin-top:12px;
+}
+
+/* Botones menos altos */
+.grupo-botones{
+    gap:8px;
+    margin-top:11px;
+}
+
+.btn-principal,
+.btn-secundario{
+    min-height:44px;
+    border-radius:13px;
+    font-size:15px;
+    font-weight:800;
+    box-shadow:none;
+}
+
+.btn-principal{
+    box-shadow:0 5px 12px rgba(11, 94, 215, .16);
+}
+
+.btn-texto{
+    padding:8px;
+    font-size:13px;
+}
+
+/* Formulario: filas más compactas */
+.form-grid{
+    gap:8px;
+}
+
+.campo-card{
+    padding:8px 9px;
+    border-radius:13px;
+}
+
+.campo-fila{
+    gap:8px;
+}
+
+.campo-info{
+    gap:8px;
+}
+
+.campo-icon,
+.check-icon{
+    width:27px;
+    min-width:27px;
+    height:27px;
+    border-radius:9px;
+    font-size:14px;
+}
+
+.campo-label{
+    font-size:12.3px;
+    font-weight:800;
+}
+
+.campo-ayuda{
+    font-size:10.5px;
+    font-weight:600;
+}
+
+.input-mini{
+    width:70px;
+    height:32px;
+    border-radius:10px;
+    padding:6px 8px;
+    font-size:13.5px;
+    font-weight:800;
+}
+
+.segmented{
+    min-width:118px;
+    gap:3px;
+    padding:2px;
+    border-radius:11px;
+}
+
+.segmented label{
+    min-width:48px;
+    padding:6px 7px;
+    border-radius:9px;
+    font-size:12px;
+    font-weight:800;
+}
+
+.radio-card{
+    padding:10px;
+}
+
+.radio-card .campo-info{
+    margin-bottom:7px;
+}
+
+.radio-list{
+    gap:2px;
+    padding-left:35px;
+}
+
+.radio-list label{
+    padding:4px 0;
+    font-size:12.5px;
+    font-weight:650;
+}
+
+.radio-list input[type="radio"]{
+    width:16px;
+    height:16px;
+}
+
+.vitales-grid{
+    gap:8px;
+}
+
+/* Síntomas más finos */
+.checks-list{
+    gap:8px;
+}
+
+.check-card{
+    padding:9px 10px;
+    border-radius:13px;
+}
+
+.check-card > span{
+    gap:8px;
+    font-size:12.8px;
+    font-weight:750;
+}
+
+.check-card input{
+    width:18px;
+    height:18px;
+}
+
+/* Resumen */
+.resumen-aviso{
+    border-radius:13px;
+    padding:11px 12px;
+    margin-bottom:12px;
+}
+
+.resumen-seccion{
+    padding:12px;
+    margin-bottom:11px;
+}
+
+.resumen-seccion h3{
+    font-size:15px;
+    margin-bottom:8px;
+}
+
+.resumen-item{
+    padding:6px 0;
+    font-size:13px;
+}
+
+.resumen-grid{
+    gap:8px;
+}
+
+.vital-card{
+    border-radius:12px;
+    padding:9px;
+}
+
+.vital-card span{
+    font-size:11.5px;
+}
+
+.vital-card strong{
+    font-size:18px;
+}
+
+.resumen-chip{
+    padding:6px 9px;
+    font-size:12px;
+}
+
+/* Resultado */
+.resultado-alerta{
+    border-radius:15px;
+    padding:13px;
+    margin-bottom:12px;
+    border-left-width:5px;
+}
+
+.resultado-alerta h3{
+    font-size:21px;
+    margin-bottom:5px;
+}
+
+.resultado-alerta p{
+    font-size:13.5px;
+    line-height:1.35;
+    font-weight:600;
+}
+
+.prob-card,
+.hospital-card{
+    border-radius:15px;
+    padding:14px;
+    margin-bottom:12px;
+}
+
+.prob-card h3,
+.hospital-card h3{
+    font-size:16px;
+    margin-bottom:12px;
+}
+
+.prob-row{
+    margin-bottom:9px;
+}
+
+.prob-top{
+    font-size:12.5px;
+    margin-bottom:4px;
+}
+
+.prob-track{
+    height:7px;
+}
+
+.hospital-info{
+    gap:8px;
+}
+
+.hospital-linea{
+    grid-template-columns:104px 1fr;
+    gap:8px;
+    font-size:12.8px;
+}
+
+.mini-nota{
+    font-size:11.5px;
+}
+
+#bloqueGrafSat{
+    border-radius:15px;
+    padding:14px;
+}
+
+@media (min-width:700px){
+    body{ padding:14px 0; }
+    .contenedor{
+        border-radius:28px;
+        min-height:780px;
+    }
+}
+.prob-top strong.prob-critico,
+.prob-top strong.prob-urgente,
+.prob-top strong.prob-baja{
+    background: transparent !important;
+    border: 0 !important;
+    min-width: 42px;
+    height: auto;
+    display: inline-block;
+    text-align: right;
+    font-size: 13.5px;
+    font-weight: 650;
+    line-height: 1.2;
+}
+
+.prob-top strong.prob-critico{ color: var(--rojo) !important; }
+.prob-top strong.prob-urgente{ color: var(--naranja) !important; }
+.prob-top strong.prob-baja{ color: var(--verde) !important; }
+
+.prob-fill.prob-critico{ background: var(--rojo) !important; }
+.prob-fill.prob-urgente{ background: var(--naranja) !important; }
+.prob-fill.prob-baja{ background: var(--verde) !important; }
+
+/* TIPOGRAFÍA MÁS FINA */
+body,
+input,
+button,
+select,
+textarea{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 14.5px;
+    font-weight: 400;
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.app-header h1,
+.brand,
+.hero-card h2,
+.screen-card h2,
+.resumen-card h2,
+.prob-card h3,
+.hospital-card h3,
+.resultado-alerta h3{
+    font-weight: 700;
+    letter-spacing: -0.2px;
+}
+
+.hero-card p,
+.screen-card p,
+.aviso-card p,
+.resumen-card p,
+.resultado-alerta p,
+.hospital-linea,
+.prob-top{
+    font-weight: 400;
+}
+
+.campo-label,
+.check-card > span,
+.resumen-item strong,
+.hospital-linea strong{
+    font-weight: 600;
+}
+
+.hospital-dato{
+    font-weight: 600;
+}
+
+.btn-principal,
+.btn-secundario,
+.segmented label{
+    font-weight: 650;
+}
+
+/* FORMULARIOS: texto de campos más grande */
+.campo-label,
+.campo-card label,
+.campo-inline label,
+.form-row label,
+.radio-list label,
+.segmented label,
+.check-card span {
+    font-size: 15.5px !important;
+}
+
+/* Texto principal de los nombres: Edad, Frecuencia cardíaca, etc. */
+.campo-label {
+    font-size: 16px !important;
+    font-weight: 650 !important;
+}
+
+/* Opciones tipo radio: nivel de conciencia */
+.radio-list label {
+    font-size: 15px !important;
+    line-height: 1.35;
+}
+
+/* Valores de los inputs: 58, 120, 80, etc. */
+.input-mini,
+.campo-card input[type="number"] {
+    font-size: 15.5px !important;
+    font-weight: 500 !important;
+}
+
+/* Botones Sí / No, Hombre / Mujer */
+.segmented label {
+    font-size: 15px !important;
+}
+
+/* Mantener grande el título "Nivel de conciencia" */
+.campo-card > .campo-label,
+.campo-label {
+    font-size: 16px !important;
+    font-weight: 650 !important;
+}
+
+/* Hacer más pequeñas SOLO las opciones: Alerta y consciente, etc. */
+.radio-list label {
+    font-size: 13.5px !important;
+    font-weight: 400 !important;
+    line-height: 1.25 !important;
+}
+
+/* También reducir un poco el radio para que quede más fino */
+.radio-list input[type="radio"] {
+    transform: scale(0.9);
+}
