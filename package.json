@@ -2,18 +2,15 @@
   "name": "app_rest_triaje",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "servidor_rest.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node servidor_rest.js"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "mysql": "^2.18.1",
-    "node": "^25.9.0",
     "node-fetch": "^2.7.0"
   }
 }
