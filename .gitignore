@@ -218,3 +218,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Dependencias de Node.js
+node_modules/
+
+# Archivos de entorno y credenciales
+.env.*
+!.env.example
+
+# Configuración local de editores
+.vscode/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
