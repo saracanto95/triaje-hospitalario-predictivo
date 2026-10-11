@@ -1,4 +1,8 @@
 # Aplicación de Triaje Hospitalario Predictivo
+## Resumen
+Aplicación de ayuda a la decisión en triaje hospitalario, desarrollada como Trabajo de Fin de Grado en Ingeniería Biomédica. Un modelo XGBoost estima la prioridad clínica (Crítico, Urgente o No urgente) a partir de signos vitales y síntomas (F1 macro 0,659) y la app recomienda el hospital más adecuado según prioridad, distancia y saturación simulada.
+
+  > **English summary:** Prototype of a hospital triage decision-support app (Biomedical Engineering thesis). An XGBoost model estimates triage priority (critical / urgent / non-urgent) from vitals and symptoms (macro F1 0.659), and the app recommends a hospital based on priority, distance and simulated load.
 
 ## Descripción
 Trabajo de Fin de Grado de Ingeniería Biomédica (Universidad de Alicante, curso 2025/2026). Aplicación de ayuda a la decisión en triaje hospitalario: a partir de los datos clínicos que introduce el usuario (signos vitales, dolor y síntomas), estima su nivel de prioridad (Crítico, Urgente o No urgente) y recomienda el centro sanitario más adecuado según la prioridad, la distancia y la saturación simulada de los hospitales.
