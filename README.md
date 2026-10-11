@@ -43,13 +43,21 @@ Matriz de confusión (filas: clase real; columnas: predicción):
 ## Ejecución local
 
 ### Requisitos previos
+- Git
 - Python 3 (con `python` disponible en el PATH) y pip
 - Node.js y npm
 - MySQL o MariaDB en ejecución (por ejemplo, con XAMPP)
-- Navegador con la ubicación activada (ver paso 4)
+- Navegador con la ubicación activada (ver paso 5)
 > Probado con Python 3.12.6 y Node v20.9.0
 
-### 1. Base de datos
+### 1. Clonar el repositorio
+```bash
+git clone https://github.com/saracanto95/triaje-hospitalario-predictivo.git
+cd triaje-hospitalario-predictivo
+```
+Los comandos siguientes se ejecutan desde esta carpeta.
+
+### 2. Base de datos
 Con MySQL encendido, importa el esquema y los datos (crea la base `app_triaje`). Opción A, por línea de comandos:
 ```bash
 mysql -u root -p < database/app_triaje.sql
@@ -60,7 +68,7 @@ Opción B, desde phpMyAdmin: pestaña **Importar** y selecciona `database/app_tr
 
 La conexión está definida en `servidor_rest.js` (por defecto: usuario `root`, sin contraseña, `localhost:3306`). Ajústala si tu configuración es distinta.
 
-### 2. Dependencias de Python
+### 3. Dependencias de Python
 ```bash
 python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
@@ -68,7 +76,7 @@ pip install -r requirements.txt
 ```
 > En Windows PowerShell, si `activate` da un error de ejecución de scripts, ejecuta antes `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`.
 
-### 3. Dependencias de Node y arranque
+### 4. Dependencias de Node y arranque
 Con el entorno virtual activado, en la raíz del repositorio:
 ```bash
 npm install
@@ -76,7 +84,7 @@ npm start
 ```
 El servidor Node (puerto 3000) lanza automáticamente el servicio de predicción Flask (puerto 5000).
 
-### 4. Uso
+### 5. Uso
 Abre http://localhost:3000/appTriaje/ en el navegador.
 
 > La recomendación de hospital necesita la ubicación del dispositivo. Cuando el navegador la solicite, pulsa **Permitir**. Si la bloqueaste, actívala desde el icono del candado junto a la dirección y recarga la página.
