@@ -47,7 +47,7 @@ Matriz de confusión (filas: clase real; columnas: predicción):
 - Node.js y npm
 - MySQL o MariaDB en ejecución (por ejemplo, con XAMPP)
 - Navegador con la ubicación activada (ver paso 4)
-* Probado con Python 3.12.6 y Node v20.9.0
+> Probado con Python 3.12.6 y Node v20.9.0
 
 ### 1. Base de datos
 Con MySQL encendido, importa el esquema y los datos (crea la base `app_triaje`). Opción A, por línea de comandos:
