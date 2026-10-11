@@ -45,13 +45,19 @@ Matriz de confusión (filas: clase real; columnas: predicción):
 ### Requisitos previos
 - Python 3 (con `python` disponible en el PATH) y pip
 - Node.js y npm
-- MySQL o MariaDB en ejecución
+- MySQL o MariaDB en ejecución (por ejemplo, con XAMPP)
+- Navegador con la ubicación activada (ver paso 4)
+Probado con Python 3.12.6 y Node v20.9.0
 
 ### 1. Base de datos
-Importa el esquema y los datos (crea la base `app_triaje`):
+Con MySQL encendido, importa el esquema y los datos (crea la base `app_triaje`). Opción A, por línea de comandos:
 ```bash
 mysql -u root -p < database/app_triaje.sql
 ```
+Opción B, desde phpMyAdmin: pestaña **Importar** y selecciona `database/app_triaje.sql`.
+
+> MySQL debe estar en ejecución antes de iniciar la aplicación; si no, el servidor se cierra al no poder conectar.
+
 La conexión está definida en `servidor_rest.js` (por defecto: usuario `root`, sin contraseña, `localhost:3306`). Ajústala si tu configuración es distinta.
 
 ### 2. Dependencias de Python
@@ -60,6 +66,7 @@ python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
+> En Windows PowerShell, si `activate` da un error de ejecución de scripts, ejecuta antes `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`.
 
 ### 3. Dependencias de Node y arranque
 Con el entorno virtual activado, en la raíz del repositorio:
@@ -71,6 +78,8 @@ El servidor Node (puerto 3000) lanza automáticamente el servicio de predicción
 
 ### 4. Uso
 Abre http://localhost:3000/appTriaje/ en el navegador.
+
+> La recomendación de hospital necesita la ubicación del dispositivo. Cuando el navegador la solicite, pulsa **Permitir**. Si la bloqueaste, actívala desde el icono del candado junto a la dirección y recarga la página.
 
 Comprobación rápida de la API:
 ```bash
@@ -87,7 +96,13 @@ El servicio de predicción carga al arrancar `imputer.pkl`, `scaler.pkl`, `xgb_m
 - Prototipo académico con fines demostrativos: no es un dispositivo médico ni una herramienta validada para decisiones clínicas. Las predicciones no sustituyen la valoración de profesionales sanitarios.
 
 ## Trabajo futuro
-Ampliar el dataset, integrar datos hospitalarios en tiempo real, incorporar más variables clínicas y añadir autenticación, trazabilidad y validación clínica.
+- Ampliar el dataset
+- Integrar datos hospitalarios en tiempo real
+- Incorporar más variables clínicas 
+- Añadir autenticación, trazabilidad y validación clínica.
 
-## Autora
-Sara Cantó Sánchez. Trabajo de Fin de Grado en Ingeniería Biomédica, Universidad de Alicante. Tutor: Alberto Antonio De Ramón Fernández.
+## Autora y Tutor
+Sara Cantó Sánchez. 
+Tutor: Alberto Antonio De Ramón Fernández.
+Trabajo de Fin de Grado en Ingeniería Biomédica, Universidad de Alicante. 
+
