@@ -40,6 +40,15 @@ Matriz de confusión (filas: clase real; columnas: predicción):
 - La mayor confusión se da en la clase intermedia (Urgente), habitual entre niveles de triaje adyacentes.
 - Según el análisis SHAP, las variables más influyentes son Dolor, Saturación de oxígeno, Otros síntomas, Síntomas cardiovasculares, Edad y Frecuencia cardíaca.
 
+## Datos
+El modelo se entrenó con el dataset público KTAS ([https://www.kaggle.com/datasets/ilkeryildiz/emergency-service-triage-application/data]). No se incluye en el repositorio: descárgalo y guárdalo como `data/data.csv` (ver `data/README.md`).
+
+## Notebooks 
+Los cuadernos de la carpeta `notebooks/` documentan el entrenamiento y **no son necesarios para ejecutar la aplicación**, que usa el modelo ya entrenado incluido en el repositorio.
+
+- `01_comparativa_modelos.ipynb`: comparación de XGBoost, Perceptrón Multicapa y Regresión Logística.
+- `02_modelo_final.ipynb`: entrenamiento y evaluación del modelo final (XGBoost + SMOTE) y generación de los archivos del modelo (`imputer.pkl`, `scaler.pkl`, `xgb_model.json`, `feature_names.json`). Si se ejecuta, los archivos se guardan en `notebooks/`; cópialos a la raíz para que los use la aplicación.
+
 ## Ejecución local
 
 ### Requisitos previos
@@ -108,6 +117,11 @@ El servicio de predicción carga al arrancar `imputer.pkl`, `scaler.pkl`, `xgb_m
 - Integrar datos hospitalarios en tiempo real
 - Incorporar más variables clínicas 
 - Añadir autenticación, trazabilidad y validación clínica.
+
+## Documentación
+- [Resumen](docs/Resumen_TFG.pdf)
+- [Póster](docs/Poster_TFG.pdf)
+- [Presentación](docs/Presentacion_TFG.pdf)
 
 ## Autora y Tutor
 Sara Cantó Sánchez. 
